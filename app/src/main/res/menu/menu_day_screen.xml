@@ -4,10 +4,10 @@
     tools:context=".DayScreen">
 
     <item
+        android:id="@+id/menu_close"
+        android:title="@string/dayscreen_menuclose"/>
+    <item
         android:id="@+id/menu_week"
         android:title="@string/dayscreen_menuweek"/>
-        <!-- android:icon="@drawable/edit_icon"/> -->
-    <item
-        android:id="@+id/menu_exit"
-        android:title="@string/dayscreen_menuexit"/>
+
 </menu>

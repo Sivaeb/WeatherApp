@@ -2,5 +2,5 @@
     <string name="app_name">WeatherApp</string>
     <string name="welcome_title">Welcome to JF-IT Weather App</string>
     <string name="dayscreen_menuweek">Weekly Report</string>
-    <string name="dayscreen_menuexit">Exit</string>
+    <string name="dayscreen_menuclose">Close</string>
 </resources>
