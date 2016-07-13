@@ -18,10 +18,14 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class DayScreen extends AppCompatActivity {
+    private WeatherData myWeather;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_day_screen);
+
+        myWeather = new WeatherData();
 
         String zipCode = "94577";
         String url_preZip = "http://api.openweathermap.org/data/2.5/weather?zip=";
@@ -64,9 +68,23 @@ public class DayScreen extends AppCompatActivity {
 
                 if(httpURLConnection.getResponseCode() == 200) {
                     JSONObject jsonObject = new JSONObject(input);
-                    jsonObject.get("name");
-                    jsonObject.getJSONArray("weather"); //weather[0].temp...
-                    jsonObject.getJSONObject("sys"); //sys.get("dt")...
+
+                    JSONArray weatherArray = new JSONArray(); //[0].main, description, icon
+                    JSONObject mainObject = new JSONObject(); //temp, pressure, humitidy, temp_min, temp_max
+                    JSONObject sysObject = new JSONObject(); //sunrise, sunset
+                    JSONObject rainObject = new JSONObject(); //rain_3h
+
+                    weatherArray = jsonObject.getJSONArray("weather");
+                    mainObject = jsonObject.getJSONObject("main");
+                    sysObject = jsonObject.getJSONObject("sys");
+                    rainObject = jsonObject.getJSONObject("rain");
+
+                    /* ALL OBJECTS/ARRAYS DEFINED, TIME TO SET myWeather. variables */
+                    myWeather.setDt(jsonObject.get("dt").toString());
+                    myWeather.setCity_name(jsonObject.get("name").toString());
+
+                    String rain = (rainObject.get("rain_3h").toString() == null) ? "0" : jsonObject.getJSONObject("rain").toString();
+                    myWeather.setRain_3h(rain);
 
                 }
 
